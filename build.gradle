@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.course'
+version = '0.0.1-SNAPSHOT'
+description = 'udemy_course'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'org.springframework.amqp:spring-rabbit-stream'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.16.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.0'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
