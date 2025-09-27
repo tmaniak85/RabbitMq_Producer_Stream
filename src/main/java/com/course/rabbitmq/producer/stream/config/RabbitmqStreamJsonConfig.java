@@ -18,7 +18,7 @@ public class RabbitmqStreamJsonConfig {
 
     public static final String STREAM_INVOICE_NAME = "s.invoice";
 
-    @Bean
+//    @Bean
     Declarables rabbitmqSchema() {
         var exchange = ExchangeBuilder.fanoutExchange("x.invoice").durable(true).build();
         var queue = QueueBuilder.durable(STREAM_INVOICE_NAME).stream().build();
@@ -37,7 +37,7 @@ public class RabbitmqStreamJsonConfig {
         return new Jackson2JsonMessageConverter(objectMapper);
     }
 
-    @Bean
+//    @Bean
     RabbitStreamTemplate streamInvoiceTemplate(Environment env, Jackson2JsonMessageConverter jsonConverter) {
         var template = new RabbitStreamTemplate(env, STREAM_INVOICE_NAME);
         template.setMessageConverter(jsonConverter);
