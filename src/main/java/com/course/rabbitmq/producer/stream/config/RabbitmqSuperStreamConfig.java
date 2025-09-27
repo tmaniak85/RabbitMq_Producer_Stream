@@ -6,18 +6,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.rabbit.stream.config.SuperStream;
 import org.springframework.rabbit.stream.producer.RabbitStreamTemplate;
 
-@Configuration
+//@Configuration
 public class RabbitmqSuperStreamConfig {
 
     public static final String SUPER_STREAM_NUMBER_NAME = "s.super.number";
     public static final int SUPER_STREAM_NUMBER_PARTITIONS = 3;
 
-    @Bean
+//    @Bean
     SuperStream superStreamNumber() {
         return new SuperStream(SUPER_STREAM_NUMBER_NAME, SUPER_STREAM_NUMBER_PARTITIONS);
     }
 
-    @Bean(name = "superStreamNumberTemplate")
+//    @Bean(name = "superStreamNumberTemplate")
     RabbitStreamTemplate superStreamNumberTemplate(Environment env) {
         var template = new RabbitStreamTemplate(env, SUPER_STREAM_NUMBER_NAME);
 
