@@ -1,6 +1,6 @@
 package com.course.rabbitmq.producer.stream;
 
-import com.course.rabbitmq.producer.stream.producer.StreamNumberProducer;
+import com.course.rabbitmq.producer.stream.producer.SuperStreamNumberProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application implements CommandLineRunner {
 
 	@Autowired
-	private StreamNumberProducer producer;
+	private SuperStreamNumberProducer producer;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -18,6 +18,7 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		producer.sendNumber(0, 1);
+		producer.sendNumbersUsingRabbitTemplate(0, 10);
+		producer.sendNumbersUsingRabbitStreamTemplate(10, 20);
 	}
 }
